@@ -56,3 +56,45 @@ a {
 a:hover {
     color: #367c39;
 }
+
+/* Data table improvements */
+thead tr th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e8f5e9;
+}
+
+td {
+    padding: 8px;
+    font-size: 14px;
+}
+
+
+/* Primary button */
+.stButton > button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.stButton > button:hover {
+    background-color: #3d8b42;
+    transform: scale(1.03);
+}
+
