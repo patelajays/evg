@@ -3,6 +3,19 @@ from supabase import create_client, Client
 from datetime import datetime
 import pandas as pd
 
+import streamlit as st
+
+# Function to load local CSS
+def load_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Load the Evergreen Nephrology CSS
+load_css("evergreen_style.css")
+
+# Your Streamlit app code goes here
+
+
 # Supabase setup
 SUPABASE_URL = st.secrets["SUPABASE_URL"]
 SUPABASE_KEY = st.secrets["SUPABASE_KEY"]

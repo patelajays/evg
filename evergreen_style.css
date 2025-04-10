@@ -1,0 +1,58 @@
+/* evergreen_style.css */
+
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Primary button styling */
+.stButton>button {
+    background-color: #4CAF50; /* Evergreen green */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.stButton>button:hover {
+    background-color: #45a049;
+}
+
+/* Secondary button styling */
+.stButton.secondary>button {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.stButton.secondary>button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Input fields */
+input[type="text"], input[type="password"], input[type="email"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Titles and headers */
+h1, h2, h3 {
+    color: #4CAF50;
+}
+
+/* Links */
+a {
+    color: #4CAF50;
+}
+
+a:hover {
+    color: #367c39;
+}
