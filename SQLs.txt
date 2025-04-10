@@ -1,0 +1,41 @@
+CREATE TABLE public.user_data (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_email text,
+  data_field_1 text,
+  data_field_2 text,
+  last_updated_by text,
+  updated_at timestamp with time zone DEFAULT now()
+);
+
+
+-- Enable RLS
+ALTER TABLE public.user_data ENABLE ROW LEVEL SECURITY;
+
+-- Allow users to read and update only their own data
+CREATE POLICY "Users can read their data"
+ON public.user_data
+FOR SELECT
+USING (user_email = auth.uid()::text OR user_email = auth.email());
+
+CREATE POLICY "Users can update their data"
+ON public.user_data
+FOR UPDATE
+USING (user_email = auth.uid()::text OR user_email = auth.email());
+
+
+
+-- Enable RLS if not already enabled
+ALTER TABLE public.user_data ENABLE ROW LEVEL SECURITY;
+
+-- Drop old INSERT policies to avoid conflicts
+DROP POLICY IF EXISTS "Allow insert for admin" ON public.user_data;
+DROP POLICY IF EXISTS "Allow insert by anyone" ON public.user_data;
+
+-- Create new INSERT policy that works for admin OR when user inserts their own row
+CREATE POLICY "Allow insert for user or admin"
+ON public.user_data
+FOR INSERT
+TO authenticated
+WITH CHECK (
+  auth.email() = user_email OR auth.email() = 'patelajays@email.com'
+);

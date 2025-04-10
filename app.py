@@ -35,7 +35,7 @@ if page == "User View":
         st.write(f"Welcome, {email}!")
 
         # Fetch user data
-        data = supabase.table("user_data").select("*").eq("user_email", email).execute()
+        data = supabase.table("user_data").select("*").eq("email", email).execute()
         df = pd.DataFrame(data.data)
 
         if not df.empty:
@@ -44,8 +44,21 @@ if page == "User View":
             if st.button("Save Changes"):
                 for _, row in edited_df.iterrows():
                     supabase.table("user_data").update({
-                        "data_field_1": row["data_field_1"],
-                        "data_field_2": row["data_field_2"],
+                        "empi": row["empi"],
+                        "patient_name": row["patient_name"],
+                        "dob": row["dob"],
+                        "mbi": row["mbi"],
+                        "disease_status": row["disease_status"],
+                        "payer": row["payer"],
+                        "market": row["market"],
+                        "ppn": row["ppn"],
+                        "asd": row["asd"],
+                        "risk_model": row["risk_model"],
+                        "eav": row["eav"],
+                        "quarter": row["quarter"],
+                        "email": row["email"],
+                        "ppsd": row["ppsd"],
+                        "ppss": row["ppss"],
                         "last_updated_by": email,
                         "updated_at": datetime.utcnow().isoformat()
                     }).eq("id", row["id"]).execute()
@@ -66,9 +79,9 @@ elif page == "Admin Panel":
         df = pd.DataFrame(all_data.data)
 
         if not df.empty:
-            user_filter = st.selectbox("Filter by user", ["All"] + sorted(df["user_email"].unique()))
+            user_filter = st.selectbox("Filter by user", ["All"] + sorted(df["email"].unique()))
             if user_filter != "All":
-                df = df[df["user_email"] == user_filter]
+                df = df[df["email"] == user_filter]
 
             st.dataframe(df)
         else:
@@ -85,10 +98,22 @@ elif page == "Admin Panel":
                 try:
                     for _, row in df_csv.iterrows():
                         supabase.table("user_data").insert({
-                            "user_email": row["user_email"],
-                            "data_field_1": row["data_field_1"],
-                            "data_field_2": row["data_field_2"],
-                            "last_updated_by": "admin"
+                        "empi": row["empi"],
+                        "patient_name": row["patient_name"],
+                        "dob": row["dob"],
+                        "mbi": row["mbi"],
+                        "disease_status": row["disease_status"],
+                        "payer": row["payer"],
+                        "market": row["market"],
+                        "ppn": row["ppn"],
+                        "asd": row["asd"],
+                        "risk_model": row["risk_model"],
+                        "eav": row["eav"],
+                        "quarter": row["quarter"],
+                        "email": row["email"],
+                        "ppsd": row["ppsd"],
+                        "ppss": row["ppss"],
+                        "last_updated_by": "ADMIN"
                         }).execute()
                     st.success("Data uploaded successfully.")
                 except Exception as e:
