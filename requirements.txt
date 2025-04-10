@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 streamlit
 pandas
 supabase
 streamlit-authenticator
+=======
+streamlit
+pandas
+supabase
+streamlit-authenticator
+>>>>>>> c26fbce663d1fa764afa6a4d75b610b7ce10d558
