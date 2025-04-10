@@ -13,7 +13,8 @@ st.set_page_config(page_title="Secure Data Portal", layout="wide")
 st.title("🔐 Secure Data Portal")
 
 # Admin email for access check
-ADMIN_EMAIL = "patelajays@gmail.com"
+ADMIN_EMAIL = st.secrets["ADMIN_EMAIL"]
+
 
 # Session check
 if "user" not in st.session_state:
