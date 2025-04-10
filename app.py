@@ -33,15 +33,12 @@ else:
     email = st.session_state['user'].user.email
     st.write(f"Welcome, **{email}**")
 
-
-# Logout button
-if st.button("Logout"):
-    supabase.auth.sign_out()  # Optional: clear token on Supabase side
-    del st.session_state['user']
-    st.success("Logged out successfully.")
-    st.rerun()
-
-
+    # Logout button (always visible after login)
+    if st.button("Logout"):
+        supabase.auth.sign_out()
+        del st.session_state['user']
+        st.success("Logged out successfully.")
+        st.rerun()
 
     if email == ADMIN_EMAIL:
         # ---------- Admin Panel ----------
@@ -88,6 +85,7 @@ if st.button("Logout"):
                     st.success("Data uploaded successfully.")
                 except Exception as e:
                     st.error(f"Upload failed: {e}")
+
     else:
         # ---------- User View ----------
         st.subheader("👤 Your Data")
