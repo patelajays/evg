@@ -2,8 +2,12 @@ import streamlit as st
 from supabase import create_client, Client
 from datetime import datetime
 import pandas as pd
-
 import streamlit as st
+
+# Title
+st.set_page_config(page_title="Secure Data Portal", layout="wide")
+st.title("🔐 Secure Data Portal")
+
 
 # Function to load local CSS
 def load_css(file_name):
@@ -21,9 +25,6 @@ SUPABASE_URL = st.secrets["SUPABASE_URL"]
 SUPABASE_KEY = st.secrets["SUPABASE_KEY"]
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# Title
-st.set_page_config(page_title="Secure Data Portal", layout="wide")
-st.title("🔐 Secure Data Portal")
 
 # Admin email for access check
 ADMIN_EMAIL = st.secrets["ADMIN_EMAIL"]
